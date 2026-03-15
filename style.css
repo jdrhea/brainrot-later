@@ -1,0 +1,9 @@
+button{
+    background-color: powderblue;
+    font-family: "Gill Sans";
+    height: 40px;
+    width:80px;
+    display: block;
+    margin: 0 auto;
+    border: none
+}

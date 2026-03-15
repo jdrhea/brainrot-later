@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brainrot-lator</title>
+</head>
+<body>
+    <h1>Brainrot-lator</h1>
+    <input type="text" id="input" name="input"><br><br>
+    <button onclick="translateText()">Translate</button>
+
+<p id="output"></p>
+
+<script>
+const verbs = ["rizz", "mogg", "fanum tax", "mew"]
+
+function getRandomItem(arr) {
+    // Generate a random number between 0 (inclusive) and 1 (exclusive),
+    // multiply by array length to scale the range,
+    // and use Math.floor to get a whole number index.
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    
+    // Return the element at the random index
+    return arr[randomIndex];
+    
+}
+function translateText()
+{
+    let input = document.getElementById("input").value.toLowerCase();
+
+    let words = input.split(" ");
+
+    let translatedWords = [];
+
+    words.forEach(word => {
+        for (let i = 0; i < words.length; i++){
+            translatedWords.push(getRandomItem(verbs));
+            console.log(translatedWords);
+        }
+
+    });
+    let result = translatedWords;
+
+    document.getElementById("output").innerText = result;
+
+}
+</script>
+</body>
+</html>
