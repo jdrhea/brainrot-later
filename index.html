@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Brainrot-lator</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Brainrot-lator</h1>
     <input type="text" id="input" name="input"><br><br>
     <button onclick="translateText()">Translate</button>
-
-<p id="output"></p>
+    <p id="output"></p>
 
 <script>
 const verbs = ["rizz", "mogg", "fanum tax", "mew"]
+const nouns = ["skibidi","gyatt","rizzler", "aura"]
+const adj = ["sigma", "rizzy", "cooked"]
+const pn = ["ts", "my guy", "diddyblud", "bruh"]
 
 function getRandomItem(arr) {
     // Generate a random number between 0 (inclusive) and 1 (exclusive),
@@ -34,10 +37,10 @@ function translateText()
     let translatedWords = [];
 
     words.forEach(word => {
-        for (let i = 0; i < words.length; i++){
-            translatedWords.push(getRandomItem(verbs));
-            console.log(translatedWords);
-        }
+        
+        translatedWords.push(getRandomItem(verbs));
+        console.log(translatedWords);
+        
 
     });
     let result = translatedWords;
