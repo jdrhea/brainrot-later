@@ -8,15 +8,38 @@
 </head>
 <body>
     <h1>Brainrot-lator</h1>
-    <input type="text" id="input" name="input"><br><br>
-    <button onclick="translateText()">Translate</button>
-    <p id="output"></p>
+    <h2>Year:</h2>
+    <div class = "mode">
+        <button onclick = "">2023</button>
+        <button onclick = "">2024</button>
+        <button onclick = "">2025</button>
+        <button onclick = "">2026</button>
+    </div>
+    <div class = "translator">
+        <input type="text" id="input" name="input"><br><br>
+        <button onclick="translateText()">Translate</button>
+        <p id="output"></p>
+    </div>
 
 <script>
-const verbs = ["rizz", "mogg", "fanum tax", "mew"]
-const nouns = ["skibidi","gyatt","rizzler", "aura"]
-const adj = ["sigma", "rizzy", "cooked"]
-const pn = ["ts", "my guy", "diddyblud", "bruh"]
+const dictionary={
+    "love":"rizz",
+    "show":"mogg",
+    "take":"fanum tax", 
+    "do":"mew",
+    "thing":"skibidi",
+    "butt":"gyatt",
+    "person":"rizzler",
+    "popularity":"aura",
+    "bad":"cooked",
+    "great":"rizzy",
+    "good":"sigma",
+    "this":"ts", 
+    "you":"my guy", 
+    "he":"diddyblud", 
+    "you":"bruh"
+}
+const dictionaryValues = Object.values(dictionary);
 
 function getRandomItem(arr) {
     // Generate a random number between 0 (inclusive) and 1 (exclusive),
@@ -28,6 +51,32 @@ function getRandomItem(arr) {
     return arr[randomIndex];
     
 }
+function partOfSpeechdetect(wordtodetect, wordlist)
+{
+    const index = wordlist.indexOf(wordtodetect)
+
+    if (index === 0)
+    {
+        console.log("pronoun")
+    }
+    else if (index === 1)
+    {
+        console.log("verb")
+    }
+    else if (index === wordlist.length - 1)
+    {
+        console.log("noun")
+    }
+    else if (index === wordlist.length - 2)
+    {
+        console.log("adjective")
+    }
+    else{
+        console.log("idk bud")
+    }
+
+}
+
 function translateText()
 {
     let input = document.getElementById("input").value.toLowerCase();
@@ -37,13 +86,19 @@ function translateText()
     let translatedWords = [];
 
     words.forEach(word => {
+        if(dictionary[word])
+        {
+            translatedWords.push(dictionary[word]);
+        }
+        else
+        {
+            partOfSpeechdetect(word, words);
+        }
         
-        translatedWords.push(getRandomItem(verbs));
-        console.log(translatedWords);
         
 
     });
-    let result = translatedWords;
+    let result = translatedWords
 
     document.getElementById("output").innerText = result;
 
