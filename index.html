@@ -22,24 +22,38 @@
     </div>
 
 <script>
-const dictionary={
-    "love":"rizz",
-    "show":"mogg",
-    "take":"fanum tax", 
-    "do":"mew",
-    "thing":"skibidi",
-    "butt":"gyatt",
-    "person":"rizzler",
-    "popularity":"aura",
-    "bad":"cooked",
-    "great":"rizzy",
-    "good":"sigma",
-    "this":"ts", 
-    "you":"my guy", 
-    "he":"diddyblud", 
-    "you":"bruh"
-}
+const dictionary = {
+    nouns: {
+        "love": "rizz",
+        "thing": "skibidi",
+        "butt": "gyatt",
+        "person": "rizzler",
+        "popularity": "aura"
+    },
+    verbs: {
+        "show": "mogg",
+        "take": "fanum tax",
+        "do": "mew",
+        "is":"be"
+    },
+    adjectives: {
+        "bad": "cooked",
+        "great": "rizzy",
+        "good": "sigma"
+    },
+    pronouns: {
+        "this": "ts",
+        "you": "bruh",
+        "he": "diddyblud"
+    }
+};
 const dictionaryValues = Object.values(dictionary);
+
+const nouns = Object.values(dictionary.nouns);
+const verbs = Object.values(dictionary.verbs);
+const adjectives = Object.values(dictionary.adjectives);
+const pronouns = Object.values(dictionary.pronouns);
+
 
 function getRandomItem(arr) {
     // Generate a random number between 0 (inclusive) and 1 (exclusive),
@@ -51,28 +65,33 @@ function getRandomItem(arr) {
     return arr[randomIndex];
     
 }
-function partOfSpeechdetect(wordtodetect, wordlist)
+function partOfSpeechdetect(wordtodetect, wordlist, translatedWords)
 {
     const index = wordlist.indexOf(wordtodetect)
 
     if (index === 0)
     {
         console.log("pronoun")
+        translatedWords.push(getRandomItem(pronouns));
     }
     else if (index === 1)
     {
         console.log("verb")
+        translatedWords.push(getRandomItem(verbs));
     }
     else if (index === wordlist.length - 1)
     {
         console.log("noun")
+        translatedWords.push(getRandomItem(nouns));
     }
     else if (index === wordlist.length - 2)
     {
         console.log("adjective")
+        translatedWords.push(getRandomItem(adjectives));
     }
     else{
         console.log("idk bud")
+        translatedWords.push(wordtodetect);
     }
 
 }
@@ -92,7 +111,7 @@ function translateText()
         }
         else
         {
-            partOfSpeechdetect(word, words);
+            partOfSpeechdetect(word, words, translatedWords);
         }
         
         
