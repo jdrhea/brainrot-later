@@ -8,17 +8,19 @@
 </head>
 <body>
     <h1>Brainrot-lator</h1>
-    <h2>Year:</h2>
+    <h2>Language:</h2>
     <div class = "mode">
-        <button onclick = "">2023</button>
-        <button onclick = "">2024</button>
-        <button onclick = "">2025</button>
-        <button onclick = "">2026</button>
+        <button onclick = "changeLanguage('General Brainrot Language')">GBL</button>
+        <button onclick = "changeLanguage('2023')">2023</button>
+        <button onclick = "changeLanguage('2024')">2024</button>
+        <button onclick = "changeLanguage('2025')">2025</button>
+        <button onclick = "changeLanguage('2026')">2026</button>
     </div>
     <div class = "translator">
+        <p id="Language">Language: General Brainrot Language</p>
         <input type="text" id="input" name="input"><br><br>
         <button onclick="translateText()">Translate</button>
-        <p id="output"></p>
+        <p id="output">Text Will Appear Here</p>
     </div>
 
 <script>
@@ -34,12 +36,15 @@ const dictionary = {
         "show": "mogg",
         "take": "fanum tax",
         "do": "mew",
-        "is":"be"
+        "is":"be",
+        "more":"maxxing"
     },
     adjectives: {
         "bad": "cooked",
         "great": "rizzy",
-        "good": "sigma"
+        "good": "sigma",
+        "old":"unc",
+        "ugly":"chopped"
     },
     pronouns: {
         "this": "ts",
@@ -48,6 +53,7 @@ const dictionary = {
     }
 };
 const dictionaryValues = Object.values(dictionary);
+const flatDictionary = Object.assign({}, ...Object.values(dictionary));
 
 const nouns = Object.values(dictionary.nouns);
 const verbs = Object.values(dictionary.verbs);
@@ -65,6 +71,10 @@ function getRandomItem(arr) {
     return arr[randomIndex];
     
 }
+function changeLanguage(language)
+{
+    document.getElementById("Language").innerText = "Language: " + language;
+}
 function partOfSpeechdetect(wordtodetect, wordlist, translatedWords)
 {
     const index = wordlist.indexOf(wordtodetect)
@@ -73,6 +83,7 @@ function partOfSpeechdetect(wordtodetect, wordlist, translatedWords)
     {
         console.log("pronoun")
         translatedWords.push(getRandomItem(pronouns));
+        
     }
     else if (index === 1)
     {
@@ -86,11 +97,10 @@ function partOfSpeechdetect(wordtodetect, wordlist, translatedWords)
     }
     else if (index === wordlist.length - 2)
     {
-        console.log("adjective")
+
         translatedWords.push(getRandomItem(adjectives));
     }
     else{
-        console.log("idk bud")
         translatedWords.push(wordtodetect);
     }
 
@@ -105,9 +115,9 @@ function translateText()
     let translatedWords = [];
 
     words.forEach(word => {
-        if(dictionary[word])
+        if (flatDictionary[word])
         {
-            translatedWords.push(dictionary[word]);
+            translatedWords.push(flatDictionary[word]);
         }
         else
         {
@@ -117,7 +127,7 @@ function translateText()
         
 
     });
-    let result = translatedWords
+    let result = translatedWords.join(" ");
 
     document.getElementById("output").innerText = result;
 
